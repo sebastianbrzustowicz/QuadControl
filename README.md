@@ -1,3 +1,3 @@
-# New portfolio created with Reacte + Vite
+# New portfolio created with React + Vite
 
 To complete
