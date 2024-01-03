@@ -6,8 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public int i = 0;
-
     public static void main(String[] args) {
         // Inicjalizacja asynchronicznego listenera do websocketa
         WebSocketListener webSocketListener = new WebSocketListener();
@@ -33,11 +31,13 @@ public class Main {
     }
 
     static class ComputationTask implements Runnable {
+        private int i = 0;
         @Override
         public void run() {
             // Kod obsługujący obliczenia na danych co 2 ms
-
-            System.out.println("Wykonywanie obliczeń na danych...");
+            i += 1;
+            System.out.println("Wartość zmiennej i: " + i);
+            //System.out.println("Wykonywanie obliczeń na danych...");
         }
     }
 }
