@@ -5,9 +5,9 @@ App was created especially for Raspberry Pi 4 with Raspberry Pi OS, because dedi
 Compatible API which this embedded app is communicating with is shared [here](https://github.com/sebastianbrzustowicz/Robot-tasker-API).   
 
 ### Disclaimer
-Complete version which guarantee best performance is not available publicly.		
-Only alpha version of app with license restrictions is available.		
-Please contact me if you are interested in cooperation.		
+Complete version which guarantee best performance is not available publicly.		  
+Only alpha version of app with license restrictions is available.		  
+Please contact me if you are interested in cooperation.		  
 I am willing to help. 	
 
 ## Transferred data
