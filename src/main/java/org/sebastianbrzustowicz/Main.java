@@ -7,34 +7,37 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     public static void main(String[] args) {
-        // Inicjalizacja asynchronicznego listenera do websocketa
+        // Initialisation of the asynchronous listener to the websocket
         WebSocketListener webSocketListener = new WebSocketListener();
         webSocketListener.startListening();
 
-        // Inicjalizacja ScheduledExecutorService dla wątku obliczeń co 2 ms
+        // Initialisation of the ScheduledExecutorService for the calculation thread every 2 ms
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(new ComputationTask(), 0, 2, TimeUnit.MILLISECONDS);
     }
 
     static class WebSocketListener {
-        // Implementacja asynchronicznego listenera do websocketa
+        // Implementation of an asynchronous listener to the websocket
         public void startListening() {
-            // Tu implementuj logikę nasłuchiwania na zdarzenia z websocketa
-            // Na przykład, korzystając z biblioteki do obsługi WebSocket (np. Jetty WebSocket API).
+            // Here implement the logic for listening for events from the websocket
+            // For example, using a library to support WebSocket (e.g. Jetty WebSocket API).
             // CompletableFuture.runAsync(() -> {
             //    while (true) {
-            //        // Tu obsługuj zdarzenia z websocketa asynchronicznie
+            //        // Handle websocket events asynchronously here
             //    }
             // });
-            // Pamiętaj o odpowiednim obsłużeniu błędów i zamykaniu zasobów.
+            // Remember to handle errors and close down resources appropriately.
         }
     }
 
     static class ComputationTask implements Runnable {
+        // class for computation of controller law
+        // input: tasks data received from websocket and from sensors
+        // output: GPIO voltage which is rotors speeds
         private int i = 0;
         @Override
         public void run() {
-            // Kod obsługujący obliczenia na danych co 2 ms
+            // Code for handling calculations on data every 2 ms
             i += 1;
             System.out.println("Wartość zmiennej i: " + i);
             //System.out.println("Wykonywanie obliczeń na danych...");
