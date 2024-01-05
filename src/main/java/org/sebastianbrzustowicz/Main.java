@@ -18,6 +18,14 @@ public class Main {
 
     static class WebSocketListener {
         // Implementation of an asynchronous listener to the websocket
+        // hardcode vehicle ID here
+        private String vehicleID = "96907e09-c4ea-4b1f-8f24-b0d0c9b77687";
+        // socket connection url for STOMP protocol
+        private String url_socket = "http://localhost:8080/websocket-endpoint";
+        // connection status
+        private String url_status = "http://localhost:8080/topic/vehicle-status/" + vehicleID;
+        // get actual data
+        private String url_data = "http://localhost:8080/topic/vehicle-data/" + vehicleID;
         public void startListening() {
             // Here implement the logic for listening for events from the websocket
             // For example, using a library to support WebSocket (e.g. Jetty WebSocket API).
