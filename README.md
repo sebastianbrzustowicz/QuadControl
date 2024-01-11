@@ -13,7 +13,8 @@ I am willing to help.
 
 ## Transferred data
 
-The data retrieved from the API is as follows:
+The data retrieved from the API have to be the same in client and vehicle.		
+This software provide support for following data format:
 
 ```json
 {
