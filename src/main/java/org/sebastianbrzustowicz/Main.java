@@ -11,8 +11,6 @@ import java.net.URI;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.annotations.*;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 
 public class Main {
@@ -73,7 +71,7 @@ public class Main {
         // class for computation of controller law
         // input: tasks data received from websocket and from sensors
         // output: GPIO voltage which is rotors speeds
-        private int i = 0;
+        //private int i = 0;
         @Override
         public void run() {
             //System.out.println("Computations");
