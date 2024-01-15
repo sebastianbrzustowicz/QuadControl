@@ -26,6 +26,7 @@ public class Main {
     }
 
     static class WebSocketListener {
+		// WebSocket credentials
         private final String vehicleID = "e218e18c-9e1c-11ee-8c90-0242ac120002";
         private final String urlSocket = "http://localhost:8080/websocket-endpoint";
         private final String urlStatus = "http://localhost:8080/topic/vehicle-status/" + vehicleID;
