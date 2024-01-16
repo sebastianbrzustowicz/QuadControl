@@ -43,6 +43,12 @@
             <artifactId>websocket-api</artifactId>
             <version>9.4.43.v20210629</version> <!-- Replace with the latest version -->
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
