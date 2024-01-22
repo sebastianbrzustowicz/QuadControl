@@ -20,7 +20,11 @@ The data is sent and received in raw string format and its values stands for var
 Frame sent to API with sensors data:
 ```
 VEHICLE                                 // <- fixed prefix for vehicle message
+0                                       // <- actual roll from sensor
+0                                       // <- actual pitch from sensor
+0                                       // <- actual yaw from sensor
 0                                       // <- actual altitude from sensor
+0                                       // <- actual isClamp
 END                                     // <- fixed ending statement of message
 ```
 
