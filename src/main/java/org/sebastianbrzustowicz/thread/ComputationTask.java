@@ -8,10 +8,31 @@ public class ComputationTask implements Runnable {
     @Override
     public void run() {
         System.out.println("C");
-        // Code for handling calculations on data every 2 ms
+        // Code for handling calculations on data every sampling time
+        // Getting sensors data
+        double roll = 0.0d;
+        double pitch = 0.0d;
+        double yaw = 0.0d;
+        // desired values
+        double rolld = 0.0d;
+        double pitchd = 0.0d;
+        double yawd = 0.0d;
+        // controller constans
+        double k1 = 0.0d;
+        double k2 = 0.0d;
+        double k3 = 0.0d;
 
         // Compute output
 
+        // pid controller
+
+        // allocation block
+
         // GPIO output
+        double motorA = 0.0d;
+        double motorB = 0.0d;
+        double motorC = 0.0d;
+        double motorD = 0.0d;
+
     }
 }

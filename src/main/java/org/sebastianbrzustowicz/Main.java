@@ -6,6 +6,8 @@ import org.sebastianbrzustowicz.thread.ReadAltitudeSensorTask;
 import org.sebastianbrzustowicz.thread.ReadIMUSensorTask;
 import org.sebastianbrzustowicz.thread.WebSocketTask;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
