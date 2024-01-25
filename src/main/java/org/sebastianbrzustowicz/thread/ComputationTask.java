@@ -1,77 +1,91 @@
 package org.sebastianbrzustowicz.thread;
 
+import org.sebastianbrzustowicz.model.ControlData;
+import org.sebastianbrzustowicz.model.SensorData;
+import org.sebastianbrzustowicz.service.ServoController;
+
 public class ComputationTask implements Runnable {
-    // class for computation of controller law
+    // class for computation of control law
     // input: tasks data received from websocket and from sensors
     // output: GPIO voltage which is rotors speeds
-    //private int i = 0;
+
+    ControlData controlData = ControlData.getInstance();
+    SensorData sensorData = SensorData.getInstance();
+    ServoController servoController = ServoController.getInstance();
+
     @Override
     public void run() {
-        System.out.println("C");
-        // Code for handling calculations on data every sampling time
-        // Getting sensors data
-        double roll = 0.0d;
-        double pitch = 0.0d;
-        double yaw = 0.0d;
-        double altitude = 0.0d;
-        // desired values
-        double rolld = 0.0d;
-        double pitchd = 0.0d;
-        double yawd = 0.0d;
-        double altituded = 0.0d;
-        // controller constans
-        double k1 = 0.0d;
-        double k2 = 0.0d;
-        double k3 = 0.0d;
+        // Code for handling calculations on data every sampling tim
 
-        // todo: move errors to computation singleton
-        // Compute errors
-        //double errorAltitude = altituded -altitude;
-        //double errorRoll =     rolld - roll;
-        //double errorPitch =    pitchd - pitch;
-        //double errorYaw =      yawd - yaw;
+        // Compute errors: error, integral, and derivative for rpy and altitude
+        controlData.setErrorAltitude(controlData.getAltituded() - sensorData.getAltitude());
+        controlData.setErrorRoll(controlData.getRolld() - sensorData.getRoll());
+        controlData.setErrorPitch(controlData.getPitchd() - sensorData.getPitch());
+        controlData.setErrorYaw(controlData.getYawd() - sensorData.getYaw());
 
-        //double e_altitude_total += e_altitude;
-        //double e_altitude_delta  = e_altitude - e_altitude_last;
-        //double e_altitude_last   = e_altitude;
-        //double e_roll_total += e_roll;
-        //double e_roll_delta = e_roll - e_roll_last;
-        //double e_roll_last  = e_roll;
-        //double e_pitch_total += e_pitch;
-        //double e_pitch_delta  = e_pitch - e_pitch_last;
-        //double e_pitch_last   = e_pitch;
-        //double e_yaw_total += e_yaw;
-        //double e_yaw_delta  = e_yaw - e_yaw_last;
-        //double e_yaw_last   = e_yaw;
+        controlData.setErrorAltitudeTotal(controlData.getErrorAltitudeTotal() + controlData.getErrorAltitude());
+        controlData.setErrorAltitudeDelta(controlData.getErrorAltitude() - controlData.getErrorAltitudeLast());
+        controlData.setErrorAltitudeLast(controlData.getErrorAltitude());
 
-        //// pid controller
-        //double U1 = altitude_kp*errorAltitude + (altitude_ki*sample_time)*e_altitude_total + (altitude_kd/sample_time)*e_altitude_delta;
-        //double U2 = roll_kp*errorRoll         + (roll_ki*sample_time)*e_roll_total         + (roll_kd/sample_time)*e_roll_delta;
-        //double U3 = pitch_kp*errorPitch       + (pitch_ki*sample_time)*e_pitch_total       + (pitch_kd/sample_time)*e_pitch_delta;
-        //double U4 = yaw_kp*errorYaw           + (yaw_ki*sample_time)*e_yaw_total           + (yaw_kd/sample_time)*e_yaw_delta;
+        controlData.setErrorRollTotal(controlData.getErrorRollTotal() + controlData.getErrorRoll());
+        controlData.setErrorRollDelta(controlData.getErrorRoll() - controlData.getErrorRollLast());
+        controlData.setErrorRollLast(controlData.getErrorRoll());
+
+        controlData.setErrorPitchTotal(controlData.getErrorPitchTotal() + controlData.getErrorPitch());
+        controlData.setErrorPitchDelta(controlData.getErrorPitch() - controlData.getErrorPitchLast());
+        controlData.setErrorPitchLast(controlData.getErrorPitch());
+
+        controlData.setErrorYawTotal(controlData.getErrorYawTotal() + controlData.getErrorYaw());
+        controlData.setErrorYawDelta(controlData.getErrorYaw() - controlData.getErrorYawLast());
+        controlData.setErrorYawLast(controlData.getErrorYaw());
+
+        // pid controller
+        // U1 = AltitudeKp*ErrorAltitude + (AltitudeKi*SampleTime)*ErrorAltitudeTotal + (AltitudeKd/SampleTime)*ErrorAltitudeDelta
+        controlData.setU1(controlData.getAltitudeKp()*controlData.getErrorAltitude() + (controlData.getAltitudeKi()*controlData.getSampleTime())*controlData.getErrorAltitudeTotal() + (controlData.getAltitudeKd()/controlData.getSampleTime())*controlData.getErrorAltitudeDelta());
+        // U2 = RollKp*ErrorRoll + (RollKi*SampleTime)*ErrorRollTotal + (RollKd/SampleTime)*ErrorRollDelta
+        controlData.setU2(controlData.getRollKp()*controlData.getErrorRoll() + (controlData.getRollKi()*controlData.getSampleTime())*controlData.getErrorRollTotal() + (controlData.getRollKd()/controlData.getSampleTime())*controlData.getErrorRollDelta());
+        // U3 = PitchKp*ErrorPitch + (PitchKi*SampleTime)*ErrorPitchTotal + (PitchKd/SampleTime)*ErrorPitchDelta
+        controlData.setU3(controlData.getPitchKp()*controlData.getErrorPitch() + (controlData.getPitchKi()*controlData.getSampleTime())*controlData.getErrorPitchTotal() + (controlData.getPitchKd()/controlData.getSampleTime())*controlData.getErrorPitchDelta());
+        // U4 = YawKp*ErrorYaw + (YawKi*SampleTime)*ErrorYawTotal + (YawKd/SampleTime)*ErrorYawDelta
+        controlData.setU4(controlData.getYawKp()*controlData.getErrorYaw() + (controlData.getYawKi()*controlData.getSampleTime())*controlData.getErrorYawTotal() + (controlData.getYawKd()/controlData.getSampleTime())*controlData.getErrorYawDelta());
+
+        // saturation block
+        // U1_sat = Math.min(3000, Math.max(0, U1)); //0 - 360
+        controlData.setU1Sat(Math.min(3000, Math.max(0, controlData.getU1())));
+        // U2_sat = Math.min(1200, Math.max(-1200, U2)); //-180 - 180
+        controlData.setU2Sat(Math.min(1200, Math.max(0, controlData.getU2())));
+        // U3_sat = Math.min(1200, Math.max(-1200, U3)); //-180 - 180
+        controlData.setU3Sat(Math.min(1200, Math.max(0, controlData.getU3())));
+        // U4_sat = Math.min(1200, Math.max(-1200, U4)); //-180 - 180
+        controlData.setU4Sat(Math.min(1200, Math.max(0, controlData.getU4())));
 
         // allocation block
-        double U1_sat = Math.min(3000, Math.max(0, U1)); //0 - 360
-        double U2_sat = Math.min(1200, Math.max(-1200, U2)); //-180 - 180
-        double U3_sat = Math.min(1200, Math.max(-1200, U3)); //-180 - 180
-        double U4_sat = Math.min(1200, Math.max(-1200, U4)); //-180 - 180
+        // F1 = U1_sat + U2_sat - U3_sat - U4_sat;
+        controlData.setF1(controlData.getU1Sat() + controlData.getU2Sat() - controlData.getU3Sat() - controlData.getU4Sat());
+        // F2 = U1_sat + U2_sat + U3_sat + U4_sat;
+        controlData.setF2(controlData.getU1Sat() + controlData.getU2Sat() + controlData.getU3Sat() + controlData.getU4Sat());
+        // F3 = U1_sat - U2_sat - U3_sat + U4_sat;
+        controlData.setF3(controlData.getU1Sat() - controlData.getU2Sat() - controlData.getU3Sat() + controlData.getU4Sat());
+        // F4 = U1_sat - U2_sat + U3_sat - U4_sat;
+        controlData.setF4(controlData.getU1Sat() - controlData.getU2Sat() + controlData.getU3Sat() - controlData.getU4Sat());
 
-        double F1 = U1_sat + U2_sat - U3_sat - U4_sat;
-        double F2 = U1_sat + U2_sat + U3_sat + U4_sat;
-        double F3 = U1_sat - U2_sat - U3_sat + U4_sat;
-        double F4 = U1_sat - U2_sat + U3_sat - U4_sat;
+        // Force to PWM conversion (0, 10) ---> (1000, 2000)
 
-        // Force to PWM (0, 10) ---> (1000, 2000)
-        if (F1 >= 0) pwm1 = sqrt(F1*0.0022 + 0.2282)*929.4066+555.9760; else pwm1 = 1000;
-        if (F2 >= 0) pwm2 = sqrt(F2*0.0022 + 0.2282)*929.4066+555.9760; else pwm2 = 1000;
-        if (F3 >= 0) pwm3 = sqrt(F3*0.0022 + 0.2282)*929.4066+555.9760; else pwm3 = 1000;
-        if (F4 >= 0) pwm4 = sqrt(F4*0.0022 + 0.2282)*929.4066+555.9760; else pwm4 = 1000;
+        controlData.setPWM1(controlData.getF1() >= 0 ? Math.sqrt(controlData.getF1()*0.0022 + 0.2282)*929.4066+555.9760 : 1000);
+        controlData.setPWM2(controlData.getF2() >= 0 ? Math.sqrt(controlData.getF2()*0.0022 + 0.2282)*929.4066+555.9760 : 1000);
+        controlData.setPWM3(controlData.getF3() >= 0 ? Math.sqrt(controlData.getF3()*0.0022 + 0.2282)*929.4066+555.9760 : 1000);
+        controlData.setPWM4(controlData.getF4() >= 0 ? Math.sqrt(controlData.getF4()*0.0022 + 0.2282)*929.4066+555.9760 : 1000);
 
         // GPIO output
-        double motorA = 0.0d;
-        double motorB = 0.0d;
-        double motorC = 0.0d;
-        double motorD = 0.0d;
+        servoController.setPwm(0, (int) controlData.getPWM1());
+        servoController.setPwm(1, (int) controlData.getPWM2());
+        servoController.setPwm(2, (int) controlData.getPWM3());
+        servoController.setPwm(3, (int) controlData.getPWM4());
+
+        //servoController.setPwm(0, 0);
+        //servoController.setPwm(1, 0);
+        //servoController.setPwm(2, 0);
+        //servoController.setPwm(3, 0);
 
     }
 }

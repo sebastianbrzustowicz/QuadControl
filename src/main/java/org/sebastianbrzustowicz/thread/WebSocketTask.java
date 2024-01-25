@@ -40,7 +40,7 @@ public class WebSocketTask implements Runnable {
         dataFrame.append(imuValues[0]).append("\n");
         dataFrame.append(imuValues[1]).append("\n");
         dataFrame.append(imuValues[2]).append("\n");
-        dataFrame.append(sensorData.getAltitudeValue()).append("\n");
+        dataFrame.append(sensorData.getAltitude()).append("\n");
         dataFrame.append(operationalData.isClamp()).append("\n");
         dataFrame.append("END");
 

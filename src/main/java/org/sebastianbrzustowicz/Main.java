@@ -26,8 +26,8 @@ public class Main {
         schedulerWST.scheduleAtFixedRate(new WebSocketTask(), 0, 1000, TimeUnit.MILLISECONDS);
 
         // Read altitude sensor value
-        ScheduledExecutorService schedulerRAST = Executors.newScheduledThreadPool(1);
-        schedulerRAST.scheduleAtFixedRate(new ReadAltitudeSensorTask(), 50, 10000, TimeUnit.MILLISECONDS);
+        //ScheduledExecutorService schedulerRAST = Executors.newScheduledThreadPool(1);
+        //schedulerRAST.scheduleAtFixedRate(new ReadAltitudeSensorTask(), 50, 10000, TimeUnit.MILLISECONDS);
 
         // Read IMU sensor data
         //ScheduledExecutorService schedulerRIMUST = Executors.newScheduledThreadPool(1);

@@ -30,7 +30,7 @@ public class SensorData {
         this.yaw = rpyValues[2];
     }
 
-    public void saveAltitudeValue(double altitude) {
+    public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
 
@@ -38,8 +38,20 @@ public class SensorData {
         return new double[]{this.roll, this.pitch, this.yaw};
     }
 
-    public double getAltitudeValue() {
+    public double getAltitude() {
         return this.altitude;
+    }
+
+    public double getRoll() {
+        return this.roll;
+    }
+
+    public double getPitch() {
+        return this.pitch;
+    }
+
+    public double getYaw() {
+        return this.yaw;
     }
 
 }
