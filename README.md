@@ -6,6 +6,11 @@ App was created especially for Raspberry Pi 4 with Raspberry Pi OS, because dedi
 Compatible API which this embedded app is communicating with is shared [here](https://github.com/sebastianbrzustowicz/Robot-tasker-API).     
 You need to run the code on the Raspberry Pi 4 for the programme to be sure that the program works correctly.    
 
+<p align="center">
+  <img src="https://github.com/sebastianbrzustowicz/QuadControl/assets/66909222/b6c7f220-a283-405c-b590-1ca32ed11348" width="390" />
+  <img src="https://github.com/sebastianbrzustowicz/QuadControl/assets/66909222/b6256ff8-bd4b-4982-90d3-1922e3322412" width="390" />
+</p>
+
 ### Disclaimer
 Complete version which guarantee best performance is not available publicly.		  
 Only alpha version of app with license restrictions is available.		  
@@ -18,6 +23,7 @@ The data retrieved from the API have to be the same in client and vehicle.
 Handshake should be established between server and client according to data order.    
 The software provides cyclic data exchange with frequency specified in main file.    
 The data is sent and received in raw string format and its values stands for variables below.    
+
 Frame sent to API with sensors data:
 ```
 VEHICLE                                 // <- fixed prefix for vehicle message
@@ -32,13 +38,12 @@ END                                     // <- fixed ending statement of message
 Frame received from API with desired values data:
 ```
 CLIENT                                  // <- fixed prefix for client message
-4436ed9a-5228-46c0-b825-6d0a3cd90437    // <- vehicleId
 1                                       // <- mode
 0                                       // <- vtol
-0                                       // <- x
-0                                       // <- y
-0                                       // <- alt
-0                                       // <- yaw
+0                                       // <- pitchd
+0                                       // <- rolld
+0                                       // <- altituded
+0                                       // <- yawd
 false                                   // <- camTrig
 false                                   // <- camTog
 0                                       // <- camPitch
