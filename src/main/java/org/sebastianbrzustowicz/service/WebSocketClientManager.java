@@ -2,6 +2,7 @@ package org.sebastianbrzustowicz.service;
 
 import java.net.URI;
 
+import org.sebastianbrzustowicz.config.AppConfig;
 import org.sebastianbrzustowicz.model.ControlData;
 import org.sebastianbrzustowicz.model.OperationalData;
 import tech.gusavila92.websocketclient.WebSocketClient;
@@ -12,6 +13,7 @@ public class WebSocketClientManager {
     private WebSocketClient webSocketClient;
     ControlData controlData = ControlData.getInstance();
     OperationalData operationalData = OperationalData.getInstance();
+    AppConfig appConfig = AppConfig.getInstance();
 
     private WebSocketClientManager() {
         // Private constructor to prevent instantiation.
@@ -24,10 +26,10 @@ public class WebSocketClientManager {
         return instance;
     }
 
-    public void createWebSocketClient(String webSocketUrl) {
+    public void createWebSocketClient() {
         URI uri;
         try {
-            uri = new URI(webSocketUrl);
+            uri = new URI(appConfig.getWebSocketUrl());
         } catch (Exception e) {
             System.out.println("Cannot create host URI resource");
             return;
@@ -46,15 +48,15 @@ public class WebSocketClientManager {
                     String[] lines = msg.split("\n");
                     int mode = Integer.parseInt(lines[2]);
                     int vtol = Integer.parseInt(lines[3]);
-                    int x = Integer.parseInt(lines[4]);
-                    int y = Integer.parseInt(lines[5]);
-                    int alt = Integer.parseInt(lines[6]);
-                    int yaw = Integer.parseInt(lines[7]);
+                    int pitchd = Integer.parseInt(lines[4]);
+                    int rolld = Integer.parseInt(lines[5]);
+                    int altituded = Integer.parseInt(lines[6]);
+                    int yawd = Integer.parseInt(lines[7]);
                     boolean camTrig = Boolean.parseBoolean(lines[8]);
                     boolean camTog = Boolean.parseBoolean(lines[9]);
                     int camPitch = Integer.parseInt(lines[10]);
                     boolean clamp = Boolean.parseBoolean(lines[11]);
-                    controlData.saveDesiredValues(mode, vtol, x, y, alt, yaw);
+                    controlData.saveDesiredValues(mode, vtol, pitchd, rolld, altituded, yawd);
                     operationalData.saveOperationalValues(camTrig, camTog, camPitch, clamp);
                 }
             }
