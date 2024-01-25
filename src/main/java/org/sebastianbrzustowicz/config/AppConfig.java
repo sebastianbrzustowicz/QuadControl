@@ -1,11 +1,14 @@
 package org.sebastianbrzustowicz.config;
 
+import lombok.Getter;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class AppConfig {
     private static final String CONFIG_FILE_PATH = "config.properties";
+    @Getter
     private static final AppConfig instance = new AppConfig();
     private final Properties properties;
 
@@ -20,10 +23,6 @@ public class AppConfig {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static AppConfig getInstance() {
-        return instance;
     }
 
     public String getWebSocketUrl() {
