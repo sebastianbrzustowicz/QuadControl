@@ -3,7 +3,8 @@
 QuadControl is a Java-based embedded application for compatible communication with a dedicated API.  	    
 A large part of this application is inner loop thrust control of the rotors based on a sensor data.      
 App was created especially for Raspberry Pi 4 with Raspberry Pi OS, because dedicated libraries for RPi 4 were used.		    
-Compatible API which this embedded app is communicating with is shared [here](https://github.com/sebastianbrzustowicz/Robot-tasker-API).   
+Compatible API which this embedded app is communicating with is shared [here](https://github.com/sebastianbrzustowicz/Robot-tasker-API).     
+You need to run the code on the Raspberry Pi 4 for the programme to be sure that the program works correctly.    
 
 ### Disclaimer
 Complete version which guarantee best performance is not available publicly.		  
@@ -49,7 +50,7 @@ END                                     // <- fixed ending statement of message
 
 Some simple JUnit tests have been implemented:
 ```java
-to do
+updateControlData()
 ```
 
 ## License
