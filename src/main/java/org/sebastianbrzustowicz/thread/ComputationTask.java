@@ -2,7 +2,7 @@ package org.sebastianbrzustowicz.thread;
 
 import org.sebastianbrzustowicz.model.ControlData;
 import org.sebastianbrzustowicz.model.SensorData;
-import org.sebastianbrzustowicz.service.ServoController;
+//import org.sebastianbrzustowicz.service.ServoController;
 
 public class ComputationTask implements Runnable {
     // class for computation of control law
@@ -11,11 +11,14 @@ public class ComputationTask implements Runnable {
 
     ControlData controlData = ControlData.getInstance();
     SensorData sensorData = SensorData.getInstance();
-    ServoController servoController = ServoController.getInstance();
+    //ServoController servoController = ServoController.getInstance();
 
     @Override
     public void run() {
         // Code for handling calculations on data every sampling tim
+        System.out.println("Computation task");
+        // setting timer
+        long startTime = System.nanoTime();
 
         // Compute errors: error, integral, and derivative for rpy and altitude
         controlData.setErrorAltitude(controlData.getAltituded() - sensorData.getAltitude());
@@ -77,15 +80,20 @@ public class ComputationTask implements Runnable {
         controlData.setPWM4(controlData.getF4() >= 0 ? Math.sqrt(controlData.getF4()*0.0022 + 0.2282)*929.4066+555.9760 : 1000);
 
         // GPIO output
-        servoController.setPwm(0, (int) controlData.getPWM1());
-        servoController.setPwm(1, (int) controlData.getPWM2());
-        servoController.setPwm(2, (int) controlData.getPWM3());
-        servoController.setPwm(3, (int) controlData.getPWM4());
+        //servoController.setPwm(0, (int) controlData.getPWM1());
+        //servoController.setPwm(1, (int) controlData.getPWM2());
+        //servoController.setPwm(2, (int) controlData.getPWM3());
+        //servoController.setPwm(3, (int) controlData.getPWM4());
 
         //servoController.setPwm(0, 0);
         //servoController.setPwm(1, 0);
         //servoController.setPwm(2, 0);
         //servoController.setPwm(3, 0);
 
+        long endTime = System.nanoTime();
+
+        long executionTimeInMicroseconds = (endTime - startTime) / 1000;
+
+        System.out.println("Execution time of computations: " + executionTimeInMicroseconds + " microseconds");
     }
 }

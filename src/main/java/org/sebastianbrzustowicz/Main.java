@@ -15,8 +15,8 @@ public class Main {
         socketManager.createWebSocketClient();
 
         // Send data to WebSocket and receive desired values
-        ScheduledExecutorService schedulerWST = Executors.newScheduledThreadPool(1);
-        schedulerWST.scheduleAtFixedRate(new WebSocketTask(), 0, 1000, TimeUnit.MILLISECONDS);
+        //ScheduledExecutorService schedulerWST = Executors.newScheduledThreadPool(1);
+        //schedulerWST.scheduleAtFixedRate(new WebSocketTask(), 0, 1000, TimeUnit.MILLISECONDS);
 
         // Read altitude sensor value
         //ScheduledExecutorService schedulerRAST = Executors.newScheduledThreadPool(1);
@@ -28,6 +28,6 @@ public class Main {
 
         // Compute output values based on sensors data
         ScheduledExecutorService schedulerCT = Executors.newScheduledThreadPool(1);
-        schedulerCT.scheduleAtFixedRate(new ComputationTask(), 100, 200, TimeUnit.MILLISECONDS);
+        schedulerCT.scheduleAtFixedRate(new ComputationTask(), 0, 1000, TimeUnit.MILLISECONDS);
     }
 }

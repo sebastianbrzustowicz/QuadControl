@@ -11,10 +11,10 @@ public class SensorData {
     private double yaw;
 
     private SensorData() {
-        this.altitude = 0.0;
-        this.roll = 0.0;
-        this.pitch = 0.0;
-        this.yaw = 0.0;
+        this.altitude = 3.1415;
+        this.roll = 3.1415;
+        this.pitch = 3.1415;
+        this.yaw = 3.1415;
     }
 
     public static SensorData getInstance() {
