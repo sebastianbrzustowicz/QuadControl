@@ -1,4 +1,4 @@
-package org.sebastianbrzustowicz.config;
+package dev.sebastianbrzustowicz.config;
 
 import lombok.Getter;
 

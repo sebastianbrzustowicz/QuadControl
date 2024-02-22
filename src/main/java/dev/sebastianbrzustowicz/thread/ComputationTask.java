@@ -1,7 +1,7 @@
-package org.sebastianbrzustowicz.thread;
+package dev.sebastianbrzustowicz.thread;
 
-import org.sebastianbrzustowicz.model.ControlData;
-import org.sebastianbrzustowicz.model.SensorData;
+import dev.sebastianbrzustowicz.model.ControlData;
+import dev.sebastianbrzustowicz.model.SensorData;
 //import org.sebastianbrzustowicz.service.ServoController;
 
 public class ComputationTask implements Runnable {

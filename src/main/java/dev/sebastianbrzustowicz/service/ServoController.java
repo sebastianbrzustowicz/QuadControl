@@ -1,4 +1,4 @@
-package org.sebastianbrzustowicz.service;
+package dev.sebastianbrzustowicz.service;
 
 import com.pi4j.io.gpio.*;
 

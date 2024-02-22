@@ -1,6 +1,5 @@
-package org.sebastianbrzustowicz.sensor;
+package dev.sebastianbrzustowicz.sensor;
 
-import com.pi4j.io.i2c.I2CFactory;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 

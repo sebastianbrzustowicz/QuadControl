@@ -1,8 +1,8 @@
-package org.sebastianbrzustowicz.thread;
+package dev.sebastianbrzustowicz.thread;
 
-import org.sebastianbrzustowicz.model.OperationalData;
-import org.sebastianbrzustowicz.model.SensorData;
-import org.sebastianbrzustowicz.service.WebSocketClientManager;
+import dev.sebastianbrzustowicz.model.OperationalData;
+import dev.sebastianbrzustowicz.model.SensorData;
+import dev.sebastianbrzustowicz.service.WebSocketClientManager;
 
 public class WebSocketTask implements Runnable {
     // class for communication with websocket

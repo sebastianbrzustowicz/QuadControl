@@ -1,6 +1,6 @@
-package org.sebastianbrzustowicz.thread;
+package dev.sebastianbrzustowicz.thread;
 
-import org.sebastianbrzustowicz.model.SensorData;
+import dev.sebastianbrzustowicz.model.SensorData;
 
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;

@@ -1,4 +1,4 @@
-package org.sebastianbrzustowicz.model;
+package dev.sebastianbrzustowicz.model;
 
 import lombok.Data;
 

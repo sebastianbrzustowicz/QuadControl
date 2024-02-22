@@ -1,20 +1,10 @@
-package org.sebastianbrzustowicz;
+package dev.sebastianbrzustowicz;
 
+import dev.sebastianbrzustowicz.service.ServoController;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.sebastianbrzustowicz.model.ControlData;
-import org.sebastianbrzustowicz.model.SensorData;
-import org.sebastianbrzustowicz.service.ServoController;
-import org.sebastianbrzustowicz.thread.ComputationTask;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.lang.reflect.Field;
+import dev.sebastianbrzustowicz.model.ControlData;
+import dev.sebastianbrzustowicz.model.SensorData;
+import dev.sebastianbrzustowicz.thread.ComputationTask;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;

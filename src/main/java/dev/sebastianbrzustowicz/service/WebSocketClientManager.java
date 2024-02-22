@@ -1,10 +1,10 @@
-package org.sebastianbrzustowicz.service;
+package dev.sebastianbrzustowicz.service;
 
 import java.net.URI;
 
-import org.sebastianbrzustowicz.config.AppConfig;
-import org.sebastianbrzustowicz.model.ControlData;
-import org.sebastianbrzustowicz.model.OperationalData;
+import dev.sebastianbrzustowicz.config.AppConfig;
+import dev.sebastianbrzustowicz.model.ControlData;
+import dev.sebastianbrzustowicz.model.OperationalData;
 import tech.gusavila92.websocketclient.WebSocketClient;
 
 public class WebSocketClientManager {

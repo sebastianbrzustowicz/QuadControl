@@ -1,7 +1,7 @@
-package org.sebastianbrzustowicz.thread;
+package dev.sebastianbrzustowicz.thread;
 
-import org.sebastianbrzustowicz.model.SensorData;
-import org.sebastianbrzustowicz.sensor.MPU6050Reader;
+import dev.sebastianbrzustowicz.model.SensorData;
+import dev.sebastianbrzustowicz.sensor.MPU6050Reader;
 
 public class ReadIMUSensorTask implements Runnable {
     // class for reading IMU sensor rpy values

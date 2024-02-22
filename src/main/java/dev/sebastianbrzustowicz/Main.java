@@ -1,8 +1,8 @@
-package org.sebastianbrzustowicz;
+package dev.sebastianbrzustowicz;
 
-import org.sebastianbrzustowicz.service.WebSocketClientManager;
-import org.sebastianbrzustowicz.thread.ComputationTask;
-import org.sebastianbrzustowicz.thread.WebSocketTask;
+import dev.sebastianbrzustowicz.service.WebSocketClientManager;
+import dev.sebastianbrzustowicz.thread.ComputationTask;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
