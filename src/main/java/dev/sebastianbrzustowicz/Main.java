@@ -1,6 +1,8 @@
 package dev.sebastianbrzustowicz;
 
+import dev.sebastianbrzustowicz.service.TensorFlowCollisionDetectionRequest;
 import dev.sebastianbrzustowicz.service.WebSocketClientManager;
+import dev.sebastianbrzustowicz.thread.CollisionDetectionTask;
 import dev.sebastianbrzustowicz.thread.ComputationTask;
 
 import java.util.concurrent.Executors;
@@ -29,5 +31,10 @@ public class Main {
         // Compute output values based on sensors data
         ScheduledExecutorService schedulerCT = Executors.newScheduledThreadPool(1);
         schedulerCT.scheduleAtFixedRate(new ComputationTask(), 0, 1000, TimeUnit.MILLISECONDS);
+
+        ScheduledExecutorService schedulerCDT = Executors.newScheduledThreadPool(1);
+        schedulerCDT.scheduleAtFixedRate(new CollisionDetectionTask(), 0, 1000, TimeUnit.MILLISECONDS);
+
     }
+
 }
