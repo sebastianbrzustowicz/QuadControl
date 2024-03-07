@@ -2,7 +2,7 @@ package dev.sebastianbrzustowicz.service;
 
 import java.net.URI;
 
-import dev.sebastianbrzustowicz.config.AppConfig;
+import dev.sebastianbrzustowicz.config.WebSocketConfig;
 import dev.sebastianbrzustowicz.model.ControlData;
 import dev.sebastianbrzustowicz.model.OperationalData;
 import tech.gusavila92.websocketclient.WebSocketClient;
@@ -13,7 +13,7 @@ public class WebSocketClientManager {
     private WebSocketClient webSocketClient;
     ControlData controlData = ControlData.getInstance();
     OperationalData operationalData = OperationalData.getInstance();
-    AppConfig appConfig = AppConfig.getInstance();
+    WebSocketConfig webSocketConfig = WebSocketConfig.getInstance();
 
     private WebSocketClientManager() {
         // Private constructor to prevent instantiation.
@@ -29,7 +29,7 @@ public class WebSocketClientManager {
     public void createWebSocketClient() {
         URI uri;
         try {
-            uri = new URI(appConfig.getWebSocketUrl());
+            uri = new URI(webSocketConfig.getWebSocketUrl());
         } catch (Exception e) {
             System.out.println("Cannot create host URI resource");
             return;

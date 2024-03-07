@@ -6,15 +6,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class AppConfig {
-    private static final String CONFIG_FILE_PATH = "config.properties";
+public class WebSocketConfig {
+    private static final String CONFIG_FILE_PATH = "websocket.properties";
     @Getter
-    private static final AppConfig instance = new AppConfig();
+    private static final WebSocketConfig instance = new WebSocketConfig();
     private final Properties properties;
 
-    private AppConfig() {
+    private WebSocketConfig() {
         properties = new Properties();
-        try (InputStream input = AppConfig.class.getClassLoader().getResourceAsStream(CONFIG_FILE_PATH)) {
+        try (InputStream input = WebSocketConfig.class.getClassLoader().getResourceAsStream(CONFIG_FILE_PATH)) {
             if (input != null) {
                 properties.load(input);
             } else {
