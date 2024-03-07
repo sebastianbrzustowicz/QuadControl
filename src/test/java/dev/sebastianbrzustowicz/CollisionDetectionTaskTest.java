@@ -1,20 +1,12 @@
 package dev.sebastianbrzustowicz;
 
-import dev.sebastianbrzustowicz.service.ServoController;
 import dev.sebastianbrzustowicz.thread.CollisionDetectionTask;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import dev.sebastianbrzustowicz.model.ControlData;
-import dev.sebastianbrzustowicz.model.SensorData;
-import dev.sebastianbrzustowicz.thread.ComputationTask;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
 
 public class CollisionDetectionTaskTest {
 
@@ -44,6 +36,5 @@ public class CollisionDetectionTaskTest {
 
         assertTrue(Float.isFinite(extractedValue));
     }
-
 
 }
