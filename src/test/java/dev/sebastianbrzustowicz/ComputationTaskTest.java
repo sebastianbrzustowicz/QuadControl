@@ -11,7 +11,7 @@ import static org.mockito.Mockito.*;
 public class ComputationTaskTest {
 
     @Test
-    public void updateControlData() {
+    public void testUpdateControlData() {
         // Set up mocks for ControlData, SensorData, and ServoController
         ControlData controlDataMock = mock(ControlData.class);
         SensorData sensorDataMock = mock(SensorData.class);

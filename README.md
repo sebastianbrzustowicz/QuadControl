@@ -55,7 +55,9 @@ END                                     // <- fixed ending statement of message
 
 Some simple JUnit tests have been implemented:
 ```java
-updateControlData()
+testUpdateControlData()
+testCollisionDetection()
+testExecutionTime()
 ```
 
 ## License

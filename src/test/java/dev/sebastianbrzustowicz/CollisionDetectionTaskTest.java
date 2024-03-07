@@ -25,7 +25,7 @@ public class CollisionDetectionTaskTest {
     }
 
     @Test
-    public void collisionDetection() {
+    public void testCollisionDetection() {
         CollisionDetectionTask collisionDetectionTask = new CollisionDetectionTask();
         collisionDetectionTask.run();
 
