@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertTrue;
 
@@ -33,7 +32,7 @@ public class CollisionDetectionTaskTest {
         String printedOutput = outContent.toString().trim();
 
         String floatText = printedOutput.split("\\[\\[")[1].split("\\]")[0].trim();
-        System.out.println(floatText);
+
         float extractedValue = Float.parseFloat(floatText);
 
         assertTrue(Float.isFinite(extractedValue));
@@ -52,7 +51,6 @@ public class CollisionDetectionTaskTest {
         assertTrue(printedOutput.contains(expectedExpression2));
 
         String longText = printedOutput.split(expectedExpression1)[1].split(expectedExpression2)[0].trim();
-
         float extractedValue = Float.parseFloat(longText);
 
         assertTrue(Float.isFinite(extractedValue));
